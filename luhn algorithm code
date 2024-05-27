@@ -1,0 +1,21 @@
+def luhn_algorithm(card_number):
+    card_number = str(card_number)
+    checksum = 0
+
+
+    for i, digit in enumerate(reversed(card_number)):
+        n = int(digit)
+        if i % 2 == 1:  # Double every second digit
+            n *= 2
+            if n > 9:  # Subtract 9 from any result that is greater than 9
+                n -= 9
+        checksum += n
+
+    return checksum % 10 == 0
+
+
+card_number = "4532015112830366"
+if luhn_algorithm(card_number):
+    print("The card number is valid.")
+else:
+    print("The card number is invalid.")
